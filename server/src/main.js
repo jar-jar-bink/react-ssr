@@ -369,7 +369,7 @@ export const contentHtml = `
 						<span class="TextInTextImageContainer">Підпис файлів</span>
 					</div>
 					<div class="SubMenuContent">
-						<div class="TextLabel" id="ChooseFileForSignTextLabel">Оберіть файл для підпису:</div><br>
+						<div class="TextLabel" id="ChooseFileForSignTextLabel">Файл для підпису:</div><br>
 						<input id="FileToSign" type="file" class="SelectFile" name="files[]" disabled="disabled" style="margin-bottom:1em;"/><br>
 					</div>
 					<div class="SubMenuContent">

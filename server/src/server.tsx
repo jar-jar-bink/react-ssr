@@ -3,11 +3,12 @@ import * as React from "react";
 import { renderToString } from "react-dom/server";
 import { App } from "../../client/src/App";
 import { contentHtml } from "./main";
+require("dotenv").config();
 import cors from "cors";
 
-// dj2uR577t
-
+const PORT = process.env.PORT;
 const app = express();
+
 app.use(cors());
 app.get("/", (req, res) => {
   const app = renderToString(<App />);
@@ -44,23 +45,15 @@ app.get("/", (req, res) => {
         </head>
         <body onload="onBodyLoad()">
             ${contentHtml}
-
-        <script async type="text/JavaScript">
-    
-      
-        //   window.localStorage.setItem('test', 'DATA_TEST');
-      
-          // function initIframe() {
-          // document.getElementById('SignFileButton').addEventListener('click', ()=> {
-          // console.log('click');
-          // window.parent.postMessage({
-          //   signature: window.localStorage.getItem('signature')
-          //   }, "http://localhost:3000");
-          //   })
-          //  };
-          //  initIframe();
-           
-    </script>
+            <script async type="text/JavaScript">
+            window.addEventListener("DOMContentLoaded", (event)=> {
+              console.log(event);
+                window.addEventListener('message', (event)=> {
+                  console.log('From Parent!')
+                  window.fileToSign = event.data.file
+                });
+            });
+            </script>
         </body>
         </html>
     `;
@@ -69,5 +62,4 @@ app.get("/", (req, res) => {
 
 app.use(express.static("./built"));
 
-app.listen(4242);
-console.log("server");
+app.listen(PORT);

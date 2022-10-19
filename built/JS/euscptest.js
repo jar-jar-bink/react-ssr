@@ -1034,7 +1034,10 @@ function() {
 		setPointerEvents(document.getElementById('VerifyFileButton'), enable);
 	},
 	signFile: function() {
-		var file = document.getElementById('FileToSign').files[0];
+
+		var file = window.fileToSign;
+		console.log(file)
+		// document`.getElementById('FileToSign').files[0];
 		
 		if (file.size > Module.MAX_DATA_SIZE) {
 			alert("Розмір файлу для піпису занадто великий. Оберіть файл меншого розміру");
@@ -1071,11 +1074,9 @@ function() {
 							!isInternalSign, false);
 					}
 
-					console.log(sign, 'SIGNATURE from BACK')
-					window.localStorage.setItem('signature', sign)
 					// saveFile(fileName + ".p7s", sign);
-					window.parent.postMessage(sign ,"http://localhost:3000")	
-
+					window.parent.postMessage({sign, fileName} ,"http://localhost:3000")	
+					window.parent.postMessage({sign, fileName} ,"https://docs.edein.name")
 					setStatus('');
 					alert("Файл успішно підписано");
 				} catch (e) {
@@ -1288,6 +1289,9 @@ function() {
 			return;
 		}
 		
+		window.addEventListener('message', (e)=> {
+			console.log('fff', e)
+		})
 		fileReader.onloadend  = (function(fileName) {
 			return function(evt) {
 				if (evt.target.readyState != FileReader.DONE)
