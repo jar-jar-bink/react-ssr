@@ -1037,7 +1037,6 @@ function() {
 
 		var file = window.fileToSign;
 		console.log(file)
-		// document`.getElementById('FileToSign').files[0];
 		
 		if (file.size > Module.MAX_DATA_SIZE) {
 			alert("Розмір файлу для піпису занадто великий. Оберіть файл меншого розміру");
@@ -1288,10 +1287,6 @@ function() {
 			alert("Розмір файлу для розшифрування занадто великий. Оберіть файл меншого розміру");
 			return;
 		}
-		
-		window.addEventListener('message', (e)=> {
-			console.log('fff', e)
-		})
 		fileReader.onloadend  = (function(fileName) {
 			return function(evt) {
 				if (evt.target.readyState != FileReader.DONE)
@@ -2036,7 +2031,7 @@ function() {
 		}
 
 		setPointerEvents(document.getElementById('SignDataButton'), isReaded);
-		document.getElementById('FileToSign').disabled = enabled;
+		// document.getElementById('FileToSign').disabled = enabled;
 		setPointerEvents(document.getElementById('SignFileButton'), isReaded);
 		setPointerEvents(document.getElementById('TestSignButton'), isReaded);
 		document.getElementById('TestSignText').disabled = enabled;
@@ -2144,14 +2139,16 @@ function pageLoaded() {
 		'change', euSignTest.selectPrivateKeyFile, false);
 	document.getElementById('RecipientsCertsFiles').addEventListener(
 		'change', euSignTest.chooseRecepientsCertificates, false);
-	document.getElementById('FileToSign').addEventListener(
-		'change', euSignTest.chooseFileToSign, false);
+	// document.getElementById('FileToSign').addEventListener(
+	// 	'change', euSignTest.chooseFileToSign, false);
 	document.getElementById('FileToVerify').addEventListener(
 		'change', euSignTest.chooseFileToVerify, false);
 	document.getElementById('FileWithSign').addEventListener(
 		'change', euSignTest.chooseFileToVerify, false);
 	document.getElementById('EnvelopFiles').addEventListener(
 		'change', euSignTest.chooseEnvelopFile, false);
+		
+	document.getElementById('file-sign').innerHTML = window.fileToSign;
 
 	var appendMaxFileSizeLimit = function(textLabelId) {
 		var str = document.getElementById(textLabelId).innerHTML;
@@ -2160,7 +2157,7 @@ function pageLoaded() {
 		document.getElementById(textLabelId).innerHTML = str;
 	}
 
-	appendMaxFileSizeLimit('ChooseFileForSignTextLabel');
+	// appendMaxFileSizeLimit('ChooseFileForSignTextLabel');
 	appendMaxFileSizeLimit('ChooseFileForVerifyTextLabel');
 	appendMaxFileSizeLimit('ChooseFileForEnvelopTextLabel');
 }

@@ -42,17 +42,8 @@ export const contentHtml = `
 					<li id="MainPageMenuPKey" class="MainPageMenuSelectedTab" onclick="euSignTest.mainMenuItemClicked(this, 'MainPageMenuPKeyPage'); return false;">
 						<a href="#MainPageMenuPKey">Особистий ключ</a>
 					</li>
-					<li id="MainPageMenuGenPKey" class="MainPageMenuTab" onclick="euSignTest.mainMenuItemClicked(this, 'MainPageMenuGenPKeyPage'); return false;">
-						<a href="#MainPageMenuGenPKey">Генерація ос. ключа</a>
-					</li>
-					<li id="MainPageMenuCertsAndCRLs" class="MainPageMenuTab" onclick="euSignTest.mainMenuItemClicked(this, 'MainPageMenuCertsAndCRLsPage'); return false;">
-						<a href="#MainPageMenuCertsAndCRLs">Сертифікати та СВС</a>
-					</li>
 					<li id="MainPageMenuSign" class="MainPageMenuTab" onclick="euSignTest.mainMenuItemClicked(this, 'MainPageMenuSignPage'); return false;">
 						<a href="#MainPageMenuSign">Підпис</a>
-					</li>
-					<li id="MainPageMenuEnvelop" class="MainPageMenuTab" onclick="euSignTest.mainMenuItemClicked(this, 'MainPageMenuEnvelopPage'); return false;">
-						<a href="#MainPageMenuEnvelop">Шифрування</a>
 					</li>
 				</ul>
 				</div>
@@ -368,10 +359,7 @@ export const contentHtml = `
 						<img class="ImageInTextImageContainer" src="Images/Arrow.png" border="0">
 						<span class="TextInTextImageContainer">Підпис файлів</span>
 					</div>
-					<div class="SubMenuContent">
-						<div class="TextLabel" id="ChooseFileForSignTextLabel">Файл для підпису:</div><br>
-						<input id="FileToSign" type="file" class="SelectFile" name="files[]" disabled="disabled" style="margin-bottom:1em;"/><br>
-					</div>
+					<div id="file-sign"></div>
 					<div class="SubMenuContent">
 						<div id="buttonitem">
 							<a id="SignFileButton" style="cursor:pointer;" href="javascript:void(0);" title="Підписати" onclick="euSignTest.signFile()">Підписати</a>
